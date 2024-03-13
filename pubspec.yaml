@@ -1,6 +1,6 @@
 name: stylish_pull_to_refresh
 description: "This is a Flutter package with multiple RefreshIndicator animated styles."
-version: 1.0.1
+version: 1.1.0
 homepage: https://github.com/dv-mahbub/stylish_pull_to_refresh
 
 environment:

@@ -720,7 +720,10 @@ class RefreshIndicatorState extends State<StylishPullToRefresh>
       width: size.width - 10,
       // color: Colors.blue,
       child: Center(
-        child: Image.asset('assets/$assetName.gif'),
+        child: Image.asset(
+          'assets/$assetName.gif',
+          package: 'stylish_pull_to_refresh',
+        ),
       ),
     );
   }
