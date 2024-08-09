@@ -716,8 +716,8 @@ class RefreshIndicatorState extends State<StylishPullToRefresh>
     Size size = MediaQuery.of(context).size;
 
     return SizedBox(
-      height: size.height - 175,
-      width: size.width - 10,
+      height: size.height / 10,
+      width: size.width / 5,
       // color: Colors.blue,
       child: Center(
         child: Image.asset(
