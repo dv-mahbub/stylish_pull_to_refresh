@@ -122,7 +122,13 @@ class StylishPullToRefresh extends StatefulWidget {
   /// If it is null, it will be defaulted to [MaterialLocalizations.refreshIndicatorSemanticLabel].
   /// An empty string may be passed to avoid having anything read by screen reading software.
   /// The [semanticsValue] may be used to specify progress on the widget.
+
+  //style for selecting the loader widget
   final Style style;
+
+  //size for the loader height and width
+  final double? size;
+
   const StylishPullToRefresh({
     super.key,
     required this.child,
@@ -137,6 +143,7 @@ class StylishPullToRefresh extends StatefulWidget {
     this.strokeWidth = RefreshProgressIndicator.defaultStrokeWidth,
     this.triggerMode = RefreshIndicatorTriggerMode.onEdge,
     required this.style,
+    this.size,
   }) : _indicatorType = _IndicatorType.material;
 
   /// Creates an adaptive [RefreshIndicator] based on whether the target
@@ -169,6 +176,7 @@ class StylishPullToRefresh extends StatefulWidget {
     this.strokeWidth = RefreshProgressIndicator.defaultStrokeWidth,
     this.triggerMode = RefreshIndicatorTriggerMode.onEdge,
     required this.style,
+    this.size,
   }) : _indicatorType = _IndicatorType.adaptive;
 
   /// The widget below this widget in the tree.
@@ -713,11 +721,9 @@ class RefreshIndicatorState extends State<StylishPullToRefresh>
   }
 
   customSizedBox(String assetName) {
-    Size size = MediaQuery.of(context).size;
-
     return SizedBox(
-      height: size.height / 10,
-      width: size.width / 5,
+      height: widget.size ?? 50,
+      width: widget.size ?? 50,
       // color: Colors.blue,
       child: Center(
         child: Image.asset(
