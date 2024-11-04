@@ -57,13 +57,17 @@ class _MyHomeState extends State<MyHome> {
       drawer: const Drawer(),
       backgroundColor: const Color.fromARGB(234, 255, 255, 255),
       body: SafeArea(
-          child: StylishPullToRefresh(
-        style: Style.audioWave,
-        onRefresh: () async {
-          await Future.delayed(const Duration(seconds: 4));
-        },
-        child: bodyContent(size),
-      )),
+        child: StylishPullToRefresh(
+          style: Style.audioWave,
+          size: 50,
+          onRefresh: () async {
+            await Future.delayed(
+              const Duration(seconds: 4),
+            );
+          },
+          child: bodyContent(size),
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
@@ -87,63 +91,62 @@ class _MyHomeState extends State<MyHome> {
 
   SingleChildScrollView bodyContent(Size size) {
     return SingleChildScrollView(
-        child: Center(
-          child: Padding(
-            padding:
-                const EdgeInsets.only(left: 8, top: 17, right: 8, bottom: 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                balanceContainer(size),
-                instructionPart(),
-                resultContainer(
-                    size: size,
-                    iconBackground: Colors.green.shade900,
-                    iconData: Icons.currency_bitcoin,
-                    title: '4.576905 BTC',
-                    total: 21.675,
-                    subTotal: 5.749,
-                    increament: 3.457),
-                resultContainer(
-                    size: size,
-                    iconBackground: Colors.purple.shade800,
-                    iconData: Icons.keyboard_double_arrow_up_outlined,
-                    title: '12.9843704 ETH',
-                    total: 17.876,
-                    subTotal: 6.083,
-                    increament: 2.972),
-                resultContainer(
-                    size: size,
-                    iconBackground: const Color.fromARGB(255, 241, 40, 4),
-                    iconData: Icons.money,
-                    title: '3.972302 TK',
-                    total: 18.437,
-                    subTotal: 6.936,
-                    increament: 1.549),
-                resultContainer(
-                    size: size,
-                    iconBackground: const Color.fromARGB(255, 2, 107, 84),
-                    iconData: Icons.currency_exchange,
-                    title: '10.493792 CRN',
-                    total: 9.203,
-                    subTotal: 4.384,
-                    increament: -2.058),
-                resultContainer(
-                    size: size,
-                    iconBackground: Colors.blue,
-                    iconData: Icons.share,
-                    title: '8.398421 XRP',
-                    total: 22.387,
-                    subTotal: 6.238,
-                    increament: -2.239),
-                const SizedBox(
-                  height: 300,
-                ),
-              ],
-            ),
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8, top: 17, right: 8, bottom: 8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              balanceContainer(size),
+              instructionPart(),
+              resultContainer(
+                  size: size,
+                  iconBackground: Colors.green.shade900,
+                  iconData: Icons.currency_bitcoin,
+                  title: '4.576905 BTC',
+                  total: 21.675,
+                  subTotal: 5.749,
+                  increament: 3.457),
+              resultContainer(
+                  size: size,
+                  iconBackground: Colors.purple.shade800,
+                  iconData: Icons.keyboard_double_arrow_up_outlined,
+                  title: '12.9843704 ETH',
+                  total: 17.876,
+                  subTotal: 6.083,
+                  increament: 2.972),
+              resultContainer(
+                  size: size,
+                  iconBackground: const Color.fromARGB(255, 241, 40, 4),
+                  iconData: Icons.money,
+                  title: '3.972302 TK',
+                  total: 18.437,
+                  subTotal: 6.936,
+                  increament: 1.549),
+              resultContainer(
+                  size: size,
+                  iconBackground: const Color.fromARGB(255, 2, 107, 84),
+                  iconData: Icons.currency_exchange,
+                  title: '10.493792 CRN',
+                  total: 9.203,
+                  subTotal: 4.384,
+                  increament: -2.058),
+              resultContainer(
+                  size: size,
+                  iconBackground: Colors.blue,
+                  iconData: Icons.share,
+                  title: '8.398421 XRP',
+                  total: 22.387,
+                  subTotal: 6.238,
+                  increament: -2.239),
+              const SizedBox(
+                height: 300,
+              ),
+            ],
           ),
         ),
-      );
+      ),
+    );
   }
 
   Padding instructionPart() {

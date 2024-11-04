@@ -124,10 +124,13 @@ class StylishPullToRefresh extends StatefulWidget {
   /// The [semanticsValue] may be used to specify progress on the widget.
 
   //style for selecting the loader widget
-  final Style style;
+  final Style? style;
 
   //size for the loader height and width
   final double? size;
+
+  //customLoader for replacing the existing loading widget
+  final Widget? customLoader;
 
   const StylishPullToRefresh({
     super.key,
@@ -142,8 +145,9 @@ class StylishPullToRefresh extends StatefulWidget {
     this.semanticsValue,
     this.strokeWidth = RefreshProgressIndicator.defaultStrokeWidth,
     this.triggerMode = RefreshIndicatorTriggerMode.onEdge,
-    required this.style,
+    this.style,
     this.size,
+    this.customLoader,
   }) : _indicatorType = _IndicatorType.material;
 
   /// Creates an adaptive [RefreshIndicator] based on whether the target
@@ -175,8 +179,9 @@ class StylishPullToRefresh extends StatefulWidget {
     this.semanticsValue,
     this.strokeWidth = RefreshProgressIndicator.defaultStrokeWidth,
     this.triggerMode = RefreshIndicatorTriggerMode.onEdge,
-    required this.style,
+    this.style,
     this.size,
+    this.customLoader,
   }) : _indicatorType = _IndicatorType.adaptive;
 
   /// The widget below this widget in the tree.
@@ -683,12 +688,15 @@ class RefreshIndicatorState extends State<StylishPullToRefresh>
   }
 
   Widget design() {
-    switch (widget.style) {
+    Style style = widget.style ?? Style.audioWave;
+
+    switch (style) {
       case Style.audioWave:
         return customSizedBox('audioWave');
 
       case Style.box:
         return customSizedBox('box');
+
       case Style.circularProgress:
         return customSizedBox('circularProgess');
 
@@ -697,6 +705,7 @@ class RefreshIndicatorState extends State<StylishPullToRefresh>
 
       case Style.game:
         return customSizedBox('game');
+
       case Style.handGesture:
         return customSizedBox('hand');
 
@@ -721,17 +730,18 @@ class RefreshIndicatorState extends State<StylishPullToRefresh>
   }
 
   customSizedBox(String assetName) {
-    return SizedBox(
-      height: widget.size ?? 50,
-      width: widget.size ?? 50,
-      // color: Colors.blue,
-      child: Center(
-        child: Image.asset(
-          'assets/$assetName.gif',
-          package: 'stylish_pull_to_refresh',
-        ),
-      ),
-    );
+    return widget.customLoader ??
+        SizedBox(
+          height: widget.size ?? 50,
+          width: widget.size ?? 50,
+          // color: Colors.blue,
+          child: Center(
+            child: Image.asset(
+              'assets/$assetName.gif',
+              package: 'stylish_pull_to_refresh',
+            ),
+          ),
+        );
   }
 }
 
