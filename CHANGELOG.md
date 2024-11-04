@@ -12,3 +12,7 @@ Asset loading bug fixed.
 
 ## 1.1.0
 First correctly working version. Example project added.
+
+## 1.2.0
+- Customizable animation size: Developers can now adjust the size of the animation.
+- Custom loader widget: Developers can assign a custom animation or widget as a loader.
